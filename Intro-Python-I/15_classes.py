@@ -28,7 +28,7 @@ class Geocache(Waypoint):
         self.size = size
 
     def __str__(self):
-        return (super().__str__()) + (f"Difficulty: {self.difficulty} Size: {self.size}") 
+        return ("Geocache ") + (super().__str__()) + (f"Difficulty: {self.difficulty} Size: {self.size}") 
         # (f"Geocache is equal to: {self.name} lat: {self.lat} lon: {self.lon} ")
 
 
