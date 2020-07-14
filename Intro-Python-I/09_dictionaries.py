@@ -34,21 +34,19 @@ print(waypoints)
 # waypoints list.
 
 # YOUR CODE HERE
-waypoints[0]['lon']=-130
-waypoints[0]['name']='not a real place'
+waypoints[0]["lon"] = -130
+waypoints[0]["name"] = "not a real place"
 print(waypoints)
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
-print("*"*50)
+print("*" * 50)
 print("The for loop")
 for num in range(len(waypoints)):
     print(waypoints[num])
 
-print("*"*50)
+print("*" * 50)
 print("The list comprehension")
 
 this_comp = [waypoints[num] for num in range(len(waypoints))]
 print(this_comp)
-
-

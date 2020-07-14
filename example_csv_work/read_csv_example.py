@@ -12,7 +12,6 @@ for row in csv_reader:
     print(row)
 
 
-
 print()
 print("__location__ example: ")
 print("*" * 25)
@@ -40,4 +39,3 @@ with open("sample.csv", newline="") as csvfile:
         # join is built in function and takes items from a list
         # and concatenates on whatever is in the parentheses
         print(", ".join(row))
-

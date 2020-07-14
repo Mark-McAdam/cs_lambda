@@ -31,11 +31,10 @@ import sys
 import calendar
 from datetime import datetime
 
-c=calendar.TextCalendar(calendar.SUNDAY)
+c = calendar.TextCalendar(calendar.SUNDAY)
 print(len(sys.argv))
 
-month=int(sys.argv[2]) if len(sys.argv) >= 2 else datetime.now().month
-year=int(sys.argv[1]) if len(sys.argv) >= 2 else datetime.now().year
+month = int(sys.argv[2]) if len(sys.argv) >= 2 else datetime.now().month
+year = int(sys.argv[1]) if len(sys.argv) >= 2 else datetime.now().year
 
-print(c.formatmonth(year,month))
-
+print(c.formatmonth(year, month))
