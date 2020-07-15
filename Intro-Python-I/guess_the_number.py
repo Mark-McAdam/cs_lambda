@@ -13,13 +13,11 @@ generate random number unknown to the user
 # import random module
 
 # game has a while loop
-    # start the game with message to the user what to expect
-    # get user input about game settings. 
-    # initialize random number at the start 
+# start the game with message to the user what to expect
+# get user input about game settings.
+# initialize random number at the start
 
 
-
-# execute 
+# execute
 
 # reflect
-
