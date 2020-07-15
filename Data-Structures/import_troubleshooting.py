@@ -5,7 +5,8 @@ Make sure there is an __init__.py folder in the directory I am trying to import 
 make sure the import path is relative to where I am in the terminal when running the file
 if that doesn't work, I create a relative python PATH variable by running this in the terminal: 
 """
-export PYTHONPATH=.
+# export PYTHONPATH=.
+
 # then run it in vscode terminal
 
 
@@ -25,3 +26,10 @@ from singly_linked_list import LinkedList
 import sys
 sys.path.append('../singly_linked_list/')
 from singly_linked_list import LinkedList
+
+# Jana Scheuble did this way 
+import os 
+import sys
+
+sys.path.append(f'{os.getcwd()}/singly_linked_list')
+from singly_linked_list import LinkedList, Node
