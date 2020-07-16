@@ -21,20 +21,47 @@ return elements in Last In First Out order.
    implementing a Stack?
 """
 
-class Stack:
+
+class LucidStack:
+    def __init__(self):
+        self.items = []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        return self.items.pop()
+
+    def get_stack(self):
+        return self.items
+
+s = LucidStack()
+s.push("A")
+s.push("B")
+print(s.get_stack())
+s.push("C")
+s.pop()
+s.push("D")
+print(s.get_stack())
+
+
+
+
+
+class LinkedListStack:
     def __init__(self):
         self.size = 0
         self.storage = LinkedList()
-    
+
     # len returns the number of elements in the stack.
     def __len__(self):
         return self.size
-    
+
     # push adds an item to the top of the stack.
     def push(self, value):
         self.storage.add_to_tail(value)
         self.size += 1
-    
+
     # pop removes and returns the element at the top of the stack
     def pop(self):
         if self.size == 0:

@@ -7,6 +7,13 @@ class ListNode:
         self.prev = prev
         self.value = value
         self.next = next
+
+    # delete self logic from cs_32 discussion
+    # def delete(self):
+    #     if self.prev:
+    #         self.prev.next = self.next
+    #     if self.next:
+    #         self.next.prev = self.prev
             
 """
 Our doubly-linked list class. It holds references to 

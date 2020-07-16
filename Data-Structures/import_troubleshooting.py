@@ -22,7 +22,7 @@ import sys
 sys.path.insert(1, '../singly_linked_list/')
 from singly_linked_list import LinkedList
 
-# Josiah Roa 
+# Josiah Roa and Adam David recommended
 import sys
 sys.path.append('../singly_linked_list/')
 from singly_linked_list import LinkedList
