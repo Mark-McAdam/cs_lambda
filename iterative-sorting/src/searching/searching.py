@@ -11,7 +11,7 @@ def linear_search(arr, target):
 def binary_search(arr, target):
 
     # Your code here
-# save pointers for an iterative approach
+    # save pointers for an iterative approach
     min = 0
     max = len(arr)-1
 
