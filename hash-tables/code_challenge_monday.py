@@ -15,3 +15,16 @@ for j in list:
     count += min(j)
 print(count)
 
+
+# the solution I talked through
+# Create an empty list to hold the minimum item in each array
+# append smallest item in each nested list
+# Go through items in list
+# sum items in the list of minimum values.
+
+min_num_list = []
+for integer in list:
+    min_list.append(min(integer))
+    total = sum(min_list)
+print(total)
+
