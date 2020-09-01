@@ -1,3 +1,112 @@
+class LinkedList:
+    """
+    Reuse old code to create a linked list for the assignment
+    """
+
+    def __init__(self):
+        self.head = None
+
+    def size(self):
+        current = self.head
+        size = 0
+        if current.next is None:
+            return 1
+        else:
+            while current != None:
+                size += 1
+                current = current.next
+
+            return size
+
+    # looking for key
+    def search(self, key):
+        current = self.head
+
+        # TODO is not None
+        # TODO versus != None
+        while current != None:
+            if current.key == key:
+                return current
+            # iterate through it now
+            current = current.next
+
+        # if the key is not found return None
+        # if not found the current will be none so return current
+
+        # TODO see what the difference is
+        # !!! return current !!! test this versus returning None
+        return None
+
+    # I did not follow Beejs example of insert head
+    # implement insert tail and hope it doesn't ruin everything
+
+    def insert_tail(self, key, value):
+        # if not head condition
+        if self.head == None:
+            # create a node to be the head
+            new_node = HashTableEntry(key, value)
+            # set self.head to the new node
+            self.head = new_node
+
+        # if head exists condition
+        else:
+            # search for the key we need
+            node = self.search(key)
+
+            # if match is found
+            # if node is not None Condition
+            # TODO is not None
+            # TODO versus != None
+            if node != None:
+                node.value = value
+
+            # if the key does not reside in LinkedList condition
+            else:
+                # new node time
+                new_node = HashTableEntry(key, value)
+
+                # start iterating
+                current.self = head
+
+                # TODO is not None
+                # TODO versus != None
+                while current.next != None:
+                    # iterate through it now
+                    current = current.next
+                # set next node
+                current.next = new_node
+
+    def delete(self, key):
+
+        # iterate through starting at the head
+        current = self.head
+
+        # if next is none head is none
+        if current.next is None:
+            self.head = None
+
+        # if the current is the key to delete
+        # set head as the current next
+        elif current.key == key:
+            self.head = current.next
+
+        # if exists next node and is not key
+        else:
+
+            # start iterating through
+            while current.next != None:
+
+                # if the next node's key is the passed in key
+                if current.next.key == key:
+
+                    # set the current next node to None
+                    current.next = None
+
+                # if current next key is not key we are deleting
+                else:
+                    current = current.next
+
+
 class HashTableEntry:
     """
     Linked List hash table key/value pair
