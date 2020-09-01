@@ -22,7 +22,7 @@ print(count)
 # Go through items in list
 # sum items in the list of minimum values.
 
-min_num_list = []
+min_list = []
 for integer in list:
     min_list.append(min(integer))
     total = sum(min_list)

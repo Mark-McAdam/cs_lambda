@@ -6,7 +6,7 @@ class HashTableEntry:
     def __init__(self, key, value):
         self.key = key
         self.value = value
-        self.next = None
+        # self.next = None Not needed until linked list day two
 
     def __repr__(self):
         return f"HashTableEntry({repr(self.key)}, {repr(self.key)})"
@@ -27,6 +27,10 @@ class HashTable:
     def __init__(self, capacity):
         # Your code here
         self.capacity = capacity
+        if capacity < MIN_CAPACITY:
+            capacity = MIN_CAPACITY
+        self.storage = [None] * self.capacity
+        self.item_counter = 0
 
     def get_num_slots(self):
         """
@@ -48,6 +52,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        return self.item_counter / self.capacity
 
     def fnv1(self, key):
         """
@@ -65,6 +70,10 @@ class HashTable:
         Implement this, and/or FNV-1.
         """
         # Your code here
+        hash = 5381
+        for letter in key:
+            hash = ((hash << 5) + hash) + ord(letter)
+        return hash
 
     def hash_index(self, key):
         """
