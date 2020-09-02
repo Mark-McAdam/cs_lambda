@@ -1,3 +1,23 @@
+"""
+Do many reps of this until it becomes second nature
+"""
+
+
+class HashTableEntry:
+    """
+    Linked List hash table key/value pair
+    """
+
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
+        self.next = None
+        # Not needed until linked list day two
+
+    def __repr__(self):
+        return f"HashTableEntry({repr(self.key)}, {repr(self.key)})"
+
+
 class LinkedList:
     """
     Reuse old code to create a linked list for the assignment
@@ -6,25 +26,11 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
-    def size(self):
-        current = self.head
-        size = 0
-        if current.next is None:
-            return 1
-        else:
-            while current != None:
-                size += 1
-                current = current.next
-
-            return size
-
     # looking for key
     def search(self, key):
         current = self.head
 
-        # TODO is not None
-        # TODO versus != None
-        while current != None:
+        while current is not None:
             if current.key == key:
                 return current
             # iterate through it now
@@ -33,9 +39,7 @@ class LinkedList:
         # if the key is not found return None
         # if not found the current will be none so return current
 
-        # TODO see what the difference is
-        # !!! return current !!! test this versus returning None
-        return None
+        return current
 
     # I did not follow Beejs example of insert head
     # implement insert tail and hope it doesn't ruin everything
@@ -55,9 +59,8 @@ class LinkedList:
 
             # if match is found
             # if node is not None Condition
-            # TODO is not None
-            # TODO versus != None
-            if node != None:
+
+            if node is not None:
                 node.value = value
 
             # if the key does not reside in LinkedList condition
@@ -66,11 +69,9 @@ class LinkedList:
                 new_node = HashTableEntry(key, value)
 
                 # start iterating
-                current.self = head
+                current = self.head
 
-                # TODO is not None
-                # TODO versus != None
-                while current.next != None:
+                while current.next is not None:
                     # iterate through it now
                     current = current.next
                 # set next node
@@ -94,7 +95,7 @@ class LinkedList:
         else:
 
             # start iterating through
-            while current.next != None:
+            while current.next is not None:
 
                 # if the next node's key is the passed in key
                 if current.next.key == key:
@@ -106,19 +107,17 @@ class LinkedList:
                 else:
                     current = current.next
 
+    def size(self):
+        current = self.head
+        size = 0
+        if current.next is None:
+            return 1
+        else:
+            while current is not None:
+                size += 1
+                current = current.next
 
-class HashTableEntry:
-    """
-    Linked List hash table key/value pair
-    """
-
-    def __init__(self, key, value):
-        self.key = key
-        self.value = value
-        # self.next = None Not needed until linked list day two
-
-    def __repr__(self):
-        return f"HashTableEntry({repr(self.key)}, {repr(self.key)})"
+            return size
 
 
 # Hash table can't have fewer than this many slots
@@ -136,10 +135,10 @@ class HashTable:
     def __init__(self, capacity):
         # Your code here
         self.capacity = capacity
-        if capacity < MIN_CAPACITY:
-            capacity = MIN_CAPACITY
-        self.storage = [None] * self.capacity
-        self.item_counter = 0
+        # if capacity < MIN_CAPACITY:
+        #     capacity = MIN_CAPACITY
+        self.storage = [None] * capacity
+        # self.item_counter = 0
 
     def get_num_slots(self):
         """
@@ -152,7 +151,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
-        return self.capacity
+        return len(self.storage)
 
     def get_load_factor(self):
         """
@@ -161,9 +160,16 @@ class HashTable:
         Implement this.
         """
         # Your code here
-        return self.item_counter / self.capacity
+        total_elements = 0
+        for i in self.storage:
+            if i is None:
+                pass
+            else:
+                total_elements += i.size()
 
-    def fnv1(self, key):
+        return total_elements / self.get_num_slots()
+
+        # def fnv1(self, key):
         """
         FNV-1 Hash, 64-bit
 
@@ -195,12 +201,35 @@ class HashTable:
     def put(self, key, value):
         """
         Store the value with the given key.
-
         Hash collisions should be handled with Linked List Chaining.
-
         Implement this.
         """
-        # Your code here
+        # get the hash index
+        hash_index = self.hash_index(key)
+
+        # if the hash index is None...
+        if self.storage[hash_index] is None:
+            # create a linkedlist object
+            self.storage[hash_index] = LinkedList()
+            # insert the node to the tail of the linked list
+            # since it won't find a head, it will set this
+            # as the head
+            self.storage[hash_index].insert_tail(key, value)
+        # if a linked list already exists
+        else:
+            # add a node to the tail
+            self.storage[hash_index].insert_tail(key, value)
+
+        load_factor = self.get_load_factor()
+
+        if load_factor >= 0.7:
+            self.resize(self.get_num_slots() * 2)
+
+        elif load_factor <= 0.2:
+            new_capacity = self.get_num_slots() // 2
+            if new_capacity < 8:
+                new_capacity = 8
+            self.resize(new_capacity)
 
     def delete(self, key):
         """
@@ -211,6 +240,22 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        # get the hash index
+        hash_index = self.hash_index(key)
+
+        # if there is no linked list at the index
+        if self.storage[hash_index] == None:
+            # return
+            return print("The key had no value")
+        # if there is a linked list at the index...
+        else:
+            # delete the node
+            self.storage[hash_index].delete(key)
+
+            # if the head was deleted...
+            if self.storage[hash_index].head is None:
+                # a linked list is not needed, set the index to None
+                self.storage[hash_index] = None
 
     def get(self, key):
         """
@@ -221,6 +266,26 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        # get the hash index
+        hash_index = self.hash_index(key)
+        # if there is no linked list at a the index...
+        if self.storage[hash_index] is None:
+            # return None
+            return None
+
+        # if there is a linked list at the index,
+        # search for the key at that linked list
+        node = self.storage[hash_index].search(key)
+
+        # if it found a match...
+        if node is not None:
+            # return the value
+            return node.value
+
+        # if it didn't find a match
+        else:
+            # return None since search() returns None if nothing is found
+            return node
 
     def resize(self, new_capacity):
         """
@@ -230,6 +295,18 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        new_array = [None] * new_capacity
+
+        self.capacity = new_capacity
+
+        for i in self.storage:
+            if i is None:
+                pass
+            else:
+                hash_index = self.hash_index(i.head.key)
+                new_array[hash_index] = i
+
+        self.storage = new_array
 
 
 if __name__ == "__main__":
