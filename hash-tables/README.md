@@ -82,3 +82,20 @@ full-featured.)
 * [Cracking Caesar Ciphers](applications/crack_caesar/)
 * [Sum and Difference](applications/sumdiff/)
 
+
+
+
+
+
+Sprint challenge will be similar 
+
+   Expect:
+   Hash Tables or Dict 
+   Can't use set use Dict to avoid problem with our hand built hash tables
+
+   If you can do today sprint will be ok
+   Find the rubric and solve three out of five problems 
+   2 3 4 are the easiest to solve 
+
+   @ 8am mark for attendance 
+   
