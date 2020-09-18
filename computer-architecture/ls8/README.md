@@ -60,9 +60,19 @@ but you'll have to implement those three above instructions first!
 ## Step 0: IMPORTANT: inventory what is here!
 
 * Make a list of files here.
+- ls8 directory has our cpu and ls8.py files
+- ls8/examples directory has the files we will run over next couple days to check our work
+- cpu.py main class to handle the emulation of a virtual cpu
+- ls8.py how we will run programs and call from the cpu ls8.py import functions from the cpu
+- spec sheet is like instruction from a pseudo boss about what we are to create and how it should behave
+- cheat sheet is lookups for the opcodes - takes the binary codes and explains in human readable acronyms
+
 * Write a short 3-10-word description of what each file does.
+
 * Note what has been implemented, and what hasn't.
+
 * Read this whole file.
+
 * Skim the spec.
 
 ## Step 1: Add the constructor to `cpu.py`
